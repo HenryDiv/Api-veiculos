@@ -1,0 +1,8 @@
+CREATE TABLE veiculos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    ano YEAR NOT NULL,
+    proprietario VARCHAR(100) NOT NULL,
+    cor VARCHAR(30) NOT NULL
+);

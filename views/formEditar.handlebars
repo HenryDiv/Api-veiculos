@@ -1,0 +1,49 @@
+<style>
+    form{
+        background-color: #cacaca;
+        border-radius: 25px;
+        
+    }
+     *{
+          font-family: "Outfit", sans-serif;
+
+    }
+    
+    main{
+        background-color: #007bff ;
+       height: 100vh;
+        flex-direction: column;
+    }
+.textos{
+    padding-left: 20px;
+}
+.textos p{
+    margin: 20px;
+}
+.txt{
+    padding-left: 50px;
+}
+</style>
+
+<main class="d-flex align-items-center justify-content-center  ">
+
+    <div class="container">
+       
+           
+               <form action="/editar" method="post"> 
+               <h1 class="text-center py-2">Edição de veiculos</h1>
+               <p class="txt">Altere os  campos Desejados</p>
+                <div class="d-flex flex-column mb-3  align-items-center justify-content-center mx-5 py-4"  >
+                    <input type="hidden" name="id"  class="form-control my-2" placeholder="Digite o id do veiculo" value="{{veiculo.id}}" readonly>
+                    <input type="text" name="marca"  class="form-control my-2" placeholder="Digite a marca do veiculo"  id="validationCustom01" value="{{veiculo.marca}}" required>
+                     <input type="text" name="modelo" class="form-control my-2"placeholder="Digite o modelo do veiculo" id="validationCustom01" value="{{veiculo.modelo}}" required>
+                <input type="number" name="ano" class="form-control my-2" placeholder="Digite o ano do veiculo no fomrato XXXX" id="validationCustom01" value="{{veiculo.ano}}" required>
+                    <input type="text" name="proprietario" class="form-control my-2"placeholder="Digite o nome do proprietario" id="validationCustom01" value="{{veiculo.proprietario}}" required>
+                    <input type="text" name="cor" class="form-control my-2" placeholder="Digite a cor do veiculo" id="validationCustom01" value="{{veiculo.cor}}" required>
+                    <input type="submit" class="btn btn-primary" value="atualizar" id="validationCustom01" required>
+                    <a href="/" class="btn btn-secondary my-2">Cancelar</a>
+                </div>
+               </form>
+         </div>
+        
+</main>
