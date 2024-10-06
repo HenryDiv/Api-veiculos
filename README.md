@@ -1,6 +1,6 @@
 # API de Gerenciamento de Veículos
 
- simples **API de Gerenciamento de Veículos** desenvolvida no curso técnico de desenvolvimento de sistemas do senai  permite o cadastro, visualização, edição e remoção de informações sobre veículos. Desenvolvida em Node.js com MySQL, esta API fornece um conjunto de endpoints RESTful para facilitar a interação com os dados dos veículos.
+ simples **API de Gerenciamento de Veículos** desenvolvida no curso técnico de desenvolvimento de sistemas do senai que permite o cadastro, visualização, edição e remoção de informações sobre veículos. Desenvolvida em Node.js com MySQL, esta API fornece um conjunto de endpoints RESTful para facilitar a interação com os dados dos veículos.
 
 ## Funcionalidades Principais
 
