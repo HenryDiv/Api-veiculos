@@ -20,6 +20,13 @@
 .textos p{
     margin: 20px;
 }
+.text{
+    margin: 0;
+    padding-left: 10px;
+}
+.input{
+    margin-bottom: 20px;
+}
 </style>
 
 <main class="d-flex align-items-center  ">
@@ -29,16 +36,22 @@
 
                <form action="/cadastrar" method="post"> 
                <h1 class="text-center py-2">Cadastro de veiculos</h1>
-                <div class="d-flex flex-column mb-3  align-items-center justify-content-center mx-5 py-4"  >
-                    <input type="text" name="marca"  class="form-control my-2" placeholder="Digite a marca do veiculo"  id="validationCustom01" required>
-                     <input type="text" name="modelo" class="form-control my-2"placeholder="Digite o modelo do veiculo" id="validationCustom01" required>
-                <input type="number" name="ano" class="form-control my-2" placeholder="Digite o ano do veiculo no fomrato XXXX" id="validationCustom01" required>
-                    <input type="text" name="proprietario" class="form-control my-2"placeholder="Digite o nome do proprietario" id="validationCustom01" required>
-                    <input type="text" name="cor" class="form-control my-2" placeholder="Digite a cor do veiculo" id="validationCustom01" required>
-                    <input type="submit" class="btn btn-primary" value="Cadastrar" id="validationCustom01" required>
+                <div class="d-flex flex-column mb-3   justify-content-center mx-5 py-4"  >
+                    <p class="text-start text">Marca</p>
+                    <input type="text" name="marca"  class="form-control input " placeholder="Digite a marca do veiculo"  id="validationCustom01" required>
+                    <p class="text-start text">Modelo</p>
+                     <input type="text" name="modelo" class="form-control input"placeholder="Digite o modelo do veiculo" id="validationCustom01" required>
+                    <p class="text-start text">ano</p>
+                <input type="number" name="ano" class="form-control input" placeholder="Digite o ano do veiculo no fomrato XXXX" id="validationCustom01" required>
+                    <p class="text-start text">proprietário</p>
+                    <input type="text" name="proprietario" class="form-control input"placeholder="Digite o nome do proprietario" id="validationCustom01" required>
+                    <p class="text-start text">Cor</p>
+                    <input type="text" name="cor" class="form-control input" placeholder="Digite a cor do veiculo" id="validationCustom01" required>
+                    <input type="submit" class="btn btn-primary" value="Cadastrar" id="validationCustom01">
                     <a href="/viewall" class="btn btn-primary my-2">Ver todos os veiculos</a>
                     <a href="/search" class="btn btn-primary my-2">Buscar por id</a>
                     <a href="/searchYear" class="btn btn-primary my-2">Buscar por ano</a>
+                    <a href="/searchColor" class="btn btn-primary my-2">Buscar por cor</a>
                 </div>
                </form>
          </div>

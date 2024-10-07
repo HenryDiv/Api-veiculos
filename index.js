@@ -20,7 +20,7 @@ const conexao=mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
-    database:'api_veiculos'
+    database:'veiculos'
 
 });
 conexao.connect(function(erro){
@@ -105,6 +105,16 @@ app.get('/remover/:id', function(req,res){
     conexao.query(query,values, function(erro,retorno){
         if (erro) throw erro
         res.render('searchYear', {carros: retorno.length?retorno : []})
+    })
+ })
+
+ app.get('/searchColor',function(req,res){
+    let cor=req.query.cor
+    const query=`SELECT * FROM veiculos WHERE cor=?`;
+    const values=[cor]
+    conexao.query(query,values, function (erro,retorno){
+        if (erro) throw erro
+        res.render('searchColor', {carros:retorno.length?retorno : []})
     })
  })
  app.post('/cadastrar', function (req,res){ //cadastro 
