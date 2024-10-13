@@ -1,5 +1,5 @@
 const express = require ('express')
-const mysql= require("mysql")
+const conexao = require ('./db')
 const app = express()
 const  {engine} = require ('express-handlebars')
 
@@ -14,19 +14,6 @@ app.set('views', './views');
 //manipulação de dados
 app.use(express.json());
 app.use(express.urlencoded({extends:false}))
-
-
-const conexao=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'',
-    database:'veiculos'
-
-});
-conexao.connect(function(erro){
-    if(erro) throw erro;
-    console.log('conexao sucessful')
-});
 
 app.get('/',(req,res)=>{
     res.render('api')
@@ -52,13 +39,7 @@ app.get('/remover/:id', function(req,res){
     });
 });
 
- app.get('/viewid/:id', (req, res) => { //view id
-    const { id } = req.params; 
-   conexao.query(`SELECT * FROM veiculos WHERE id=${id}`,(err,result)=>{
-    res.send(result);
-   })
- });
-
+//retorna os dados do veiculo que clicar no botão editar 
  app.get('/formEditar/:id', function(req,res){
  conexao.query(`SELECT * FROM veiculos WHERE id=${req.params.id}`,function(erro,result){
     // caso haja erro comando sql
@@ -69,7 +50,7 @@ app.get('/remover/:id', function(req,res){
  })
     
  })
-
+//editar 
  app.post('/editar', function(req,res){
     let id=req.body.id
     let marca=req.body.marca;
@@ -89,6 +70,8 @@ app.get('/remover/:id', function(req,res){
     })
  })
 
+
+ //buscar por id
  app.get('/search', function (req,res){
     let id=req.query.id
     const query = `SELECT * FROM veiculos WHERE id=?`;
@@ -98,6 +81,8 @@ app.get('/remover/:id', function(req,res){
         res.render('searchId', { carros: retorno.length ? retorno : [] });
     })
  })
+
+ //buscar por ano 
  app.get('/searchYear', function (req,res){
     let year=req.query.ano
     const query=`SELECT * FROM veiculos WHERE ano=?`;
@@ -108,6 +93,7 @@ app.get('/remover/:id', function(req,res){
     })
  })
 
+ //buscar por cor 
  app.get('/searchColor',function(req,res){
     let cor=req.query.cor
     const query=`SELECT * FROM veiculos WHERE cor=?`;
@@ -117,6 +103,8 @@ app.get('/remover/:id', function(req,res){
         res.render('searchColor', {carros:retorno.length?retorno : []})
     })
  })
+
+ //cadastro
  app.post('/cadastrar', function (req,res){ //cadastro 
     let marca=req.body.marca;
     let modelo=req.body.modelo;
@@ -136,61 +124,6 @@ app.get('/remover/:id', function(req,res){
     });
 
 })
-
-// app.get('/viewall',(req, res)=>{ //view all
-//     res.send(veiculos)
-// })
-
-// app.get('/viewid/:id', (req, res) => { //view id
-//     const { id } = req.params; 
-//     const search = veiculos[id]; 
-
-//     if (search) {
-//         res.send(search); 
-//     } else {
-//         res.send('Veículo não encontrado' )
-//     }
-// });
-// app.get('/viewyear/:year',(req,res)=>{ //view year
-//     const {year}=req.params
-//     const result = veiculos.filter((veiculos) => veiculos.ano=== year);
-//     res.send(result)
-// })
-
-// app.get('/viewcolor/:color', (req,res)=>{ //view color 
-//     const {color}=req.params
-//     const index=String(color)
-//     const result=veiculos.filter((veiculos)=>veiculos.cor ===index)
-//     res.send(`veiculo na cor ${index} encotrado! ${JSON.stringify(result )}`)
-//     //res.send(result)
-// })
-
-// app.delete('/del/:id', (req,res)=>{ // delete id 
-//     const {id}=req.params
-//     veiculos.splice(id,1)
-//     res.send('user removido')
-// })
-
-// app.delete('/delmod/:model', (req,res)=>{ //del model
-//     const {model}=req.params
-//     const index=String(model)
-//     const result=veiculos.filter((veiculos)=> veiculos.modelo!==index)
-//     veiculos.splice(result,1)
-//     res.send("veiculo removido")
-// })
-
-// app.put('/mud/:id',(req,res)=>{ //mudar por  id
-//     var {id}=req.params
-//     const {marca,modelo,ano,prop,cor}=req.body
-//     try{
-//         veiculos[id]={id:id,marca,modelo,ano,prop,cor}
-//         res.send(`veiculo atualizado! \n Marca: ${marca} \n Modelo: ${modelo} \n Ano: ${ano} \n Proprietário: ${prop} \n Cor: ${cor}`)
-//     }
-//     catch(err){
-//         res.send("user not found")
-//     }
-// })
-
 
  app.listen(3030, ()=>{
    console.log(`example app listening on port ${3030}`)
